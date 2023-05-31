@@ -1,11 +1,12 @@
 class DatasetCreator:
-    def __init__(self, prompter, tokenizer, cutoff_len, train_on_inputs, add_eos_token, val_set_size):
+    def __init__(self, prompter, tokenizer, cutoff_len, train_on_inputs, add_eos_token, dataset_size, val_set_size):
         self.prompter = prompter
         self.tokenizer = tokenizer
         self.cutoff_len = cutoff_len
         self.train_on_inputs = train_on_inputs
         self.add_eos_token = add_eos_token
         self.val_set_size = val_set_size
+        self.dataset_size = dataset_size
 
     def tokenize(self, prompt, add_eos_token=True):
             self.tokenizer.pad_token_id = (
@@ -59,7 +60,7 @@ class DatasetCreator:
                 ]  # could be sped up, probably
             return tokenized_full_prompt
     
-    def create_dataset(self, data):
+    def create_dataset(self, data):        
         if self.val_set_size > 0:
             train_val = data["train"].train_test_split(
                 test_size=self.val_set_size, shuffle=True, seed=42
