@@ -20,6 +20,6 @@
         "stage3_gather_16bit_weights_on_model_save": true
     },
     "train_batch_size": "auto",
-    "micro_batch_size_per_gpu": 1,
+    "micro_batch_size_per_gpu": "auto",
     "gradient_accumulation_steps": "auto"
 }
